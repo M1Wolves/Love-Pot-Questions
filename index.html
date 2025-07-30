@@ -1,134 +1,294 @@
-<h1>Love Pot Questions</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Pot Questions</title>
+  <style>
+    body {
+      background-color: #ffcccb;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
 
-<!-- Golden Pot SVG Image -->
-<svg id="pot" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
-  <!-- Main body of the pot with gradient -->
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <ellipse cx="60" cy="80" rx="50" ry="40" fill="url(#grad)" stroke="#FFA500" stroke-width="4"/>
-  <!-- Opening of the pot -->
-  <ellipse cx="60" cy="50" rx="40" ry="10" fill="#FFA500" stroke="#FF8C00" stroke-width="3"/>
-  <!-- Top lip -->
-  <ellipse cx="60" cy="48" rx="40" ry="4" fill="#FFF8DC" opacity="0.3"/>
-  <!-- Handles -->
-  <circle cx="10" cy="80" r="8" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
-  <circle cx="110" cy="80" r="8" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
-</svg>
+    h1 {
+      margin: 10px 0;
+    }
 
-<!-- Display for the question -->
-<div id="question">Click the Love pot to reveal a question!</div>
+    #pot {
+      width: 150px;
+      cursor: pointer;
+      transition: transform 0.1s;
+      margin: 20px;
+      z-index: 1;
+    }
 
-<script>
-  const questions = [
-  "What do you like in your best friend and why?",
-  "What is your best childhood memory?",
-  "WHAT DO YOU THINK IS YOUR BEST QUALITY AND WHY?",
-  "IF THERE IS SOMETHING YOU WOULD LIKE ME TO WORK ON, WHAT IS IT?",
-  "WHAT IS YOUR MOST EMBARRASSING MOMENT TO DATE?",
-  "If given the ability to rewind, what would you re-do in your life?",
-  "What is your perfect way to relax after a stressful day at work?",
-  "What is the most significant lesson, life has taught you?",
-  "What are three qualities you want our children to inherit?",
-  "What could I do for you that I don’t do now?",
-  "What qualities make me special to you?",
-  "If you could have three wishes from me, what would they be?",
-  "What were you thinking on our first date?",
-  "What are your thoughts on having our elderly parents live with us if they can't live on their own one day?",
-  "How do you plan to save for retirement? What are your goals?",
-  "What can I do to show you how much I love you?",
-  "Do you believe in soul mates? What about love at first sight?",
-  "When did you realize that you were in love with me?",
-  "Do you like sentimental gifts or gifts with a practical purpose?",
-  "What types of compliments do you like to hear?",
-  "Is our relationship physical enough for you? How can it be better?",
-  "How and where do you like to be touched?",
-  "What are something outside of the bedroom I can do to keep the feeling of intimacy going all day?",
-  "What is the closest you have ever felt to me?",
-  "In one word, what would you like the theme of our relationship to be?",
-  "How can I be a better partner for you?",
-  "What makes you feel appreciated in a relationship?",
-  "Do you feel like you have the freedom to be yourself in our relationship?",
-  "Who is the best couple among your family and why do you think that?",
-  "What are three things that you can’t live without?",
-  "What do you wish people would stop asking you?",
-  "What is one thing that is a total turn off? What is one thing that is a total turn on?",
-  "What do you think makes us unique and different from other couples?",
-  "What are the top three things we should include on our bucket list?",
-  "What is the biggest lie that someone told you? What is the biggest lie you have told someone?",
-  "When your family does not approve of a decision you’ve made, how do you handle it?",
-  "If you could trade lives with someone, who would it be?",
-  "What’s the best piece of advice you’ve ever received?",
-  "If you could change one thing about today’s world, what would it be?",
-  "What legacy do you want to leave behind when you’re gone?",
-  "How do you think your past relationships have helped you to grow and find a better partner?",
-  "What makes you the most stressed, and why?",
-  "Are you an organ donor? Why or why not?",
-  "What would you want to accomplish in life if you could only accomplish one thing?",
-  "Do you believe in second chances? Why or why not?",
-  "If you could give advice to your younger self, what would it be?",
-  "What do you worry about most in our relationship?",
-  "What’s the best gift I could give to you?",
-  "What new hobbies or activities would you like to try together?",
-  "In which ways do you think we balance each other out?",
-  "What’s something small that each of us could work on daily to make each other happy?",
-  "What core values do you think we have in common?",
-  "How can I help calm you down when you’re mad or upset?",
-  "How important is it to you to maintain individuality within a relationship?",
-  "What’s one thing you would never change about me?",
-  "How should we keep the romance alive in our relationship?",
-  "When we’re apart, what do you miss about me the most?",
-  "What makes me a great partner? What makes you a great partner?",
-  "Would you enjoy getting a couples massage?",
-  "If the world was ending, what’s the first thing you would do?",
-  "If you could have any superpower, what would it be and why?",
-  "What’s your spirit animal, and why?",
-  "What food do you find inedible?",
-  "What’s your dream honeymoon destination?",
-  "When am I my sexiest?",
-  "What’s your favorite thing I do in bed?",
-  "What do I do casually that turns you?",
-];
+    #pot:active { transform: scale(1.1); }
+    #pot.shake { animation: shake 0.3s; }
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
 
-  // Function to pick a random question and display it
-  function showQuestion() {
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    document.getElementById("question").innerText = questions[randomIndex];
-  }
+    #question-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(128,0,128,0.5);
+      font-size: 20px;
+      width: 80%;
+      text-align: center;
+      margin-bottom: 20px;
+      z-index: 1;
+    }
 
-  // Add event listener to the SVG (golden pot) so clicking it shows a question
-  document.getElementById("pot").addEventListener("click", showQuestion);
-</script>
-<style>
-body {
-    font-family: tristan, Courier New;
-    text-align: center;
-    margin-top: 40px;
-    background-color: #483052;
-  }
-  /* Style for the golden pot image */
-  #pot {
-    cursor: pointer;
-    width: 120px;
-    height: auto;
-    margin-bottom: 20px;
-    transition: transform 0.2s;
-  }
-  #pot:hover {
-    transform: scale(1.1);
-  }
-  /* Style for the question display */
-  #question {
-    font-size: 1.4em;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 15px;
-    border: 2px solid #4B0082;
-    border-radius: 12px;
-    background-color: #D8BFD8;
-    box-shadow: 0 0 18px rgba(0,0,0,5.1);
-    min-height: 80px;
-  }</style>
+    #progress-container {
+      width: 80%;
+      background: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+
+    #progress-bar {
+      height: 20px;
+      width: 0%;
+      background: #800080;
+      transition: width 0.3s;
+    }
+
+    #controls { display: flex; gap: 10px; margin-top: 10px; z-index: 1; }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #800080;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #993399; }
+
+    /* Overlay for celebration */
+    #overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 32px;
+      text-align: center;
+      padding: 20px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    #compat-buttons { margin-top: 20px; display: flex; gap: 20px; }
+    #compat-buttons button { background: #fff; color: #800080; }
+    #compat-buttons button:hover { background: #eee; }
+  </style>
+</head>
+<body>
+  <h1>Love Pot Questions</h1>
+  <img id="pot" src="https://sdmntprwestus3.oaiusercontent.com/files/00000000-3468-61fd-8c33-ae42e920f34f/raw?se=2025-07-30T11%3A57%3A19Z&sp=r&sv=2024-08-04&sr=b&scid=13f2324a-76d4-5aa2-8315-8275e09836fa&skoid=a3412ad4-1a13-47ce-91a5-c07730964f35&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-29T18%3A53%3A14Z&ske=2025-07-30T18%3A53%3A14Z&sks=b&skv=2024-08-04&sig=7IZHTQIXQTcBTUmCNkb/3ZeM9%2BZ5NBLXOcUOI667HaY%3D" alt="Golden Pot" />
+  <div id="question-box">Click the Love pot to reveal a question!</div>
+  <div id="progress-container"><div id="progress-bar"></div></div>
+  <div id="controls"><button id="reset-btn">Reset</button></div>
+
+  <div id="overlay">
+    🎉 Congratulations! 🎉<br>
+    <div id="compat-question" style="margin-top:20px; font-size:24px;">So, are you compatible?</div>
+    <div id="compat-buttons">
+      <button id="yes-btn">Yes</button>
+      <button id="no-btn">No</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+            "What do you like in your best friend and why?",
+            "What is your best childhood memory?",
+            "What do you think is your best quality and why?",
+            "If there is something you would like me to work on, what is it?",
+            "What is your most embarrassing moment to date?",
+            "If given the ability to rewind, what would you re-do in your life?",
+            "What is your perfect way to relax after a stressful day at work?",
+            "What is the most significant lesson life has taught you?",
+            "What are three qualities you want our children to inherit?",
+            "What could I do for you that I don’t do now?",
+            "What qualities make me special to you?",
+            "If you could have three wishes from me, what would they be?",
+            "What were you thinking on our first date?",
+            "What are your thoughts on having our elderly parents live with us if they can't live on their own one day?",
+            "How do you plan to save for retirement? What are your goals?",
+            "What can I do to show you how much I love you?",
+            "Do you believe in soul mates? What about love at first sight?",
+            "When did you realize that you were in love with me?",
+            "Do you like sentimental gifts or gifts with a practical purpose?",
+            "What types of compliments do you like to hear?",
+            "Is our relationship physical enough for you? How can it be better?",
+            "How and where do you like to be touched?",
+            "What are something outside of the bedroom I can do to keep the feeling of intimacy going all day?",
+            "What is the closest you have ever felt to me?",
+            "In one word, what would you like the theme of our relationship to be?",
+            "How can I be a better partner for you?",
+            "What makes you feel appreciated in a relationship?",
+            "Do you feel like you have the freedom to be yourself in our relationship?",
+            "Who is the best couple among your family and why do you think that?",
+            "What are three things that you can’t live without?",
+            "What do you wish people would stop asking you?",
+            "What is one thing that is a total turn off?",
+            "What is one thing that is a total turn on?",
+            "What do you think makes us unique and different from other couples?",
+            "What are the top three things we should include on our bucket list?",
+            "What is the biggest lie that someone told you?",
+            "What is the biggest lie you have told someone?",
+            "When your family does not approve of a decision you’ve made, how do you handle it?",
+            "If you could trade lives with someone, who would it be?",
+            "What’s the best piece of advice you’ve ever received?",
+            "If you could change one thing about today’s world, what would it be?",
+            "What legacy do you want to leave behind when you’re gone?",
+            "How do you think your past relationships have helped you to grow and find a better partner?",
+            "What makes you the most stressed, and why?",
+            "Are you an organ donor? Why or why not?",
+            "What would you want to accomplish in life if you could only accomplish one thing?",
+            "Do you believe in second chances? Why or why not?",
+            "If you could give advice to your younger self, what would it be?",
+            "What do you worry about most in our relationship?",
+            "What’s the best gift I could give to you?",
+            "What new hobbies or activities would you like to try together?",
+            "In which ways do you think we balance each other out?",
+            "What’s something small that each of us could work on daily to make each other happy?",
+            "What core values do you think we have in common?",
+            "How can I help calm you down when you’re mad or upset?",
+            "How important is it to you to maintain individuality within a relationship?",
+            "What’s one thing you would never change about me?",
+            "How should we keep the romance alive in our relationship?",
+            "When we’re apart, what do you miss about me the most?",
+            "What makes me a great partner? What makes you a great partner?",
+            "Would you enjoy getting a couples massage?",
+            "If the world was ending, what’s the first thing you would do?",
+            "If you could have any superpower, what would it be and why?",
+            "What’s your spirit animal, and why?",
+            "What food do you find inedible?",
+            "What’s your dream honeymoon destination?",
+            "When am I my sexiest?",
+            "What’s your favorite thing I do in bed?",
+            "What do I do casually that turns you on?",
+            "What’s the most embarrassing thing that’s happened to you while having sex?",
+            "What do you do that makes you feel sexy?",
+            "What’s the craziest position you’ve ever done?",
+            "Have you ever had a lap dance?",
+            "Do you want to be more like or less like your parents?",
+            "What part of my body do you want to explore more?",
+            "What’s the hottest memory you have of us?",
+            "What would be a really hot place for us to have sex?",
+            "How would you feel about people watching us have sex?",
+            "What’s a very ordinary thing that just really turns you on?",
+            "What’s the worst or weirdest date you’ve ever been on?",
+            "What was your first email address?",
+            "Have you ever had any unexplainable or supernatural experiences?",
+            "What does a perfect marriage look like to you?",
+            "What do you want to do when you’re retired?",
+            "Have you ever slept with someone, then woke up wishing you never have?",
+            "What’s one thing you want me to do that I have not yet - In the bedroom?",
+            "Who are the top five people/groups you want to see in concert/show?",
+            "What is the dirtiest thing you ever thought about me?",
+            "What makes you dislike a person?",
+            "What life experiences did you miss out on?",
+            "What is your favorite memory of someone who isn’t in your life anymore?",
+            "What’s your favorite thing in your / our house?",
+            "What petty thing that people do really gets on your nerves?",
+            "What are some of the most attractive traits a person can have?",
+            "What have you struggled with your entire life?",
+            "If money was no object, and with no input from me, how would you decorate your / our house?",
+            "How good are you at reading people?",
+            "What’s the worst emotional or mental anguish you’ve endured?",
+            "What’s the biggest betrayal you have ever experienced?",
+            "What are you battling that you don’t tell anyone about?",
+            "If you had a million dollars to give to any charity, what type of charity would you give it to?",
+            "What can someone do that makes them immediately unattractive to you, no matter how attractive they are physically?",
+            "What is something that scares you on a daily basis?",
+            "What question do you most want an answer to?",
+            "If you could instantly learn a talent or skill, what would you want to know how to do?",
+            "What weird thing stresses you out more than it should?",
+            "When do you feel like you are really in your element?",
+            "What’s the biggest favor you’ve done for someone?",
+            "What is something your parents did or used to do that really embarrassed you?",
+            "What unique game of pretend did you frequently play as a child?",
+            "What movie seriously scarred you as a child or as an adult?",
+            "What irrational fears did you have as a child?",
+            "What are some of your earliest memories?",
+            "What is something I did that you thought was exceptionally kind or thoughtful?",
+            "What could we do to make our relationship stronger?",
+            "What do I do that makes you the happiest?",
+            "What do you think our life will look like in 10 years?",
+            "In what areas do you think our personalities complement each other?",
+            "What are you into sexually, but haven’t told me about?",
+            "What do I do in bed that drives you wild?"
+        ];
+    
+    let askedCount = 0, askedIndexes = new Set();
+
+    function generateQuestion() {
+      if (askedCount >= questions.length) return;
+      const pot = document.getElementById("pot");
+      const box = document.getElementById("question-box");
+      pot.classList.add("shake"); setTimeout(() => pot.classList.remove("shake"),300);
+      let idx; do { idx = Math.floor(Math.random()*questions.length); } while(askedIndexes.has(idx)&&askedCount<questions.length);
+      askedIndexes.add(idx); askedCount++;
+      box.innerText = questions[idx]; updateProgress();
+    }
+
+    function updateProgress() {
+      const bar = document.getElementById("progress-bar");
+      const pct = (askedCount/questions.length)*100;
+      bar.style.width = pct+"%";
+      if (pct>=100) showOverlay();
+    }
+
+    function showOverlay() {
+      const overlay = document.getElementById("overlay");
+      overlay.style.visibility = "visible";
+      overlay.style.opacity = "1";
+    }
+
+    function hideOverlay() {
+      const overlay = document.getElementById("overlay");
+      overlay.style.opacity = "0";
+      setTimeout(()=>overlay.style.visibility="hidden",300);
+    }
+
+    function resetAll() {
+      askedCount=0; askedIndexes.clear();
+      document.getElementById("question-box").innerText="Click the Love pot to reveal a question!";
+      document.getElementById("progress-bar").style.width="0%";
+      hideOverlay();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("pot").addEventListener("click", generateQuestion);
+      document.getElementById("reset-btn").addEventListener("click", resetAll);
+      document.getElementById("yes-btn").addEventListener("click", resetAll);
+      document.getElementById("no-btn").addEventListener("click", resetAll);
+    });
+  </script>
+</body>
+</html>
