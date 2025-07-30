@@ -1,0 +1,134 @@
+<h1>Love Pot Questions</h1>
+
+<!-- Golden Pot SVG Image -->
+<svg id="pot" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main body of the pot with gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <ellipse cx="60" cy="80" rx="50" ry="40" fill="url(#grad)" stroke="#FFA500" stroke-width="4"/>
+  <!-- Opening of the pot -->
+  <ellipse cx="60" cy="50" rx="40" ry="10" fill="#FFA500" stroke="#FF8C00" stroke-width="3"/>
+  <!-- Top lip -->
+  <ellipse cx="60" cy="48" rx="40" ry="4" fill="#FFF8DC" opacity="0.3"/>
+  <!-- Handles -->
+  <circle cx="10" cy="80" r="8" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+  <circle cx="110" cy="80" r="8" fill="#FFD700" stroke="#FFA500" stroke-width="2"/>
+</svg>
+
+<!-- Display for the question -->
+<div id="question">Click the Love pot to reveal a question!</div>
+
+<script>
+  const questions = [
+  "What do you like in your best friend and why?",
+  "What is your best childhood memory?",
+  "WHAT DO YOU THINK IS YOUR BEST QUALITY AND WHY?",
+  "IF THERE IS SOMETHING YOU WOULD LIKE ME TO WORK ON, WHAT IS IT?",
+  "WHAT IS YOUR MOST EMBARRASSING MOMENT TO DATE?",
+  "If given the ability to rewind, what would you re-do in your life?",
+  "What is your perfect way to relax after a stressful day at work?",
+  "What is the most significant lesson, life has taught you?",
+  "What are three qualities you want our children to inherit?",
+  "What could I do for you that I don’t do now?",
+  "What qualities make me special to you?",
+  "If you could have three wishes from me, what would they be?",
+  "What were you thinking on our first date?",
+  "What are your thoughts on having our elderly parents live with us if they can't live on their own one day?",
+  "How do you plan to save for retirement? What are your goals?",
+  "What can I do to show you how much I love you?",
+  "Do you believe in soul mates? What about love at first sight?",
+  "When did you realize that you were in love with me?",
+  "Do you like sentimental gifts or gifts with a practical purpose?",
+  "What types of compliments do you like to hear?",
+  "Is our relationship physical enough for you? How can it be better?",
+  "How and where do you like to be touched?",
+  "What are something outside of the bedroom I can do to keep the feeling of intimacy going all day?",
+  "What is the closest you have ever felt to me?",
+  "In one word, what would you like the theme of our relationship to be?",
+  "How can I be a better partner for you?",
+  "What makes you feel appreciated in a relationship?",
+  "Do you feel like you have the freedom to be yourself in our relationship?",
+  "Who is the best couple among your family and why do you think that?",
+  "What are three things that you can’t live without?",
+  "What do you wish people would stop asking you?",
+  "What is one thing that is a total turn off? What is one thing that is a total turn on?",
+  "What do you think makes us unique and different from other couples?",
+  "What are the top three things we should include on our bucket list?",
+  "What is the biggest lie that someone told you? What is the biggest lie you have told someone?",
+  "When your family does not approve of a decision you’ve made, how do you handle it?",
+  "If you could trade lives with someone, who would it be?",
+  "What’s the best piece of advice you’ve ever received?",
+  "If you could change one thing about today’s world, what would it be?",
+  "What legacy do you want to leave behind when you’re gone?",
+  "How do you think your past relationships have helped you to grow and find a better partner?",
+  "What makes you the most stressed, and why?",
+  "Are you an organ donor? Why or why not?",
+  "What would you want to accomplish in life if you could only accomplish one thing?",
+  "Do you believe in second chances? Why or why not?",
+  "If you could give advice to your younger self, what would it be?",
+  "What do you worry about most in our relationship?",
+  "What’s the best gift I could give to you?",
+  "What new hobbies or activities would you like to try together?",
+  "In which ways do you think we balance each other out?",
+  "What’s something small that each of us could work on daily to make each other happy?",
+  "What core values do you think we have in common?",
+  "How can I help calm you down when you’re mad or upset?",
+  "How important is it to you to maintain individuality within a relationship?",
+  "What’s one thing you would never change about me?",
+  "How should we keep the romance alive in our relationship?",
+  "When we’re apart, what do you miss about me the most?",
+  "What makes me a great partner? What makes you a great partner?",
+  "Would you enjoy getting a couples massage?",
+  "If the world was ending, what’s the first thing you would do?",
+  "If you could have any superpower, what would it be and why?",
+  "What’s your spirit animal, and why?",
+  "What food do you find inedible?",
+  "What’s your dream honeymoon destination?",
+  "When am I my sexiest?",
+  "What’s your favorite thing I do in bed?",
+  "What do I do casually that turns you?",
+];
+
+  // Function to pick a random question and display it
+  function showQuestion() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    document.getElementById("question").innerText = questions[randomIndex];
+  }
+
+  // Add event listener to the SVG (golden pot) so clicking it shows a question
+  document.getElementById("pot").addEventListener("click", showQuestion);
+</script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+    background-color: #FFB6C1;
+  }
+  /* Style for the golden pot image */
+  #pot {
+    cursor: pointer;
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+  }
+  #pot:hover {
+    transform: scale(1.1);
+  }
+  /* Style for the question display */
+  #question {
+    font-size: 1.4em;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #4B0082;
+    border-radius: 12px;
+    background-color: #D8BFD8;
+    box-shadow: 0 0 18px rgba(0,0,0,5.1);
+    min-height: 80px;
+  }</style>
